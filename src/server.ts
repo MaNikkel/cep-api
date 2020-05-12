@@ -3,6 +3,7 @@ import express, { Request, Response } from "express";
 import bodyParser from "body-parser";
 import morgan from "morgan";
 import cors from "cors";
+import mongoose from "mongoose";
 
 import routes from "./routes";
 
@@ -16,6 +17,13 @@ app.use(morgan("dev"));
 app.use(express.static("public"));
 
 app.use("/", routes);
+
+mongoose
+  .connect("mongodb+srv://localhost:27017/cep_database")
+  .then(() => {
+    console.log("CONNECTED WITH MONGO");
+  })
+  .catch(err => console.log(err));
 
 //Error handler
 app.use((error: Error, req: Request, res: Response) => {

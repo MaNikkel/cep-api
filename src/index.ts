@@ -1,3 +1,4 @@
+require("dotenv").config({ path: "./.env" });
 import "@babel/polyfill";
 
 import app from "./server";

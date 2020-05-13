@@ -19,7 +19,7 @@ app.use(express.static("public"));
 app.use("/", routes);
 
 mongoose
-  .connect("mongodb+srv://localhost:27017/cep_database")
+  .connect("mongodb://db:27017/cep_database", { useNewUrlParser: true })
   .then(() => {
     console.log("CONNECTED WITH MONGO");
   })

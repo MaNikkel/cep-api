@@ -9,12 +9,10 @@ services:
     ports:
       - "3333:3333"
     command: sh -c "yarn && yarn start"
-  mongodb_container:
-    image: mongo:latest
+  db:
+    image: "mongo"
+    container_name: mongo_db
     ports:
-      - 27017:27017
+      - "27017:27017"
     volumes:
-      - mongodb_data_container:/data/db
-
-volumes:
-  mongodb_data_container:
+      - ./data/db:/data/db

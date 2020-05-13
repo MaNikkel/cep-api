@@ -1,0 +1,55 @@
+{
+  "info": {
+    "_postman_id": "651259e6-f238-49a5-bdbd-dee6c889f5f5",
+    "name": "CEP API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "GET CEP",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{url}}/search?cep=84130000",
+          "host": ["{{url}}"],
+          "path": ["search"],
+          "query": [
+            {
+              "key": "cep",
+              "value": "84130000"
+            }
+          ]
+        }
+      },
+      "response": []
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "id": "c805aa87-c002-4b15-b106-a07b0cd1da20",
+        "type": "text/javascript",
+        "exec": [""]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "id": "069e5685-0439-4ffe-b191-dc76cf1c762a",
+        "type": "text/javascript",
+        "exec": [""]
+      }
+    }
+  ],
+  "variable": [
+    {
+      "id": "b85eaf01-3766-422b-8e3d-f5405783a232",
+      "key": "url",
+      "value": "http://localhost:3333/",
+      "type": "string"
+    }
+  ],
+  "protocolProfileBehavior": {}
+}

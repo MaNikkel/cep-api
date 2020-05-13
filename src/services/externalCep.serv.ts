@@ -1,10 +1,11 @@
 import axios from "axios";
+import { CepInterface } from "../interfaces";
 
-export async function consultViaCep(cep: string) {
+export async function consultViaCep(cep: string): Promise<CepInterface> {
   try {
-    const response = await axios.get(`${process.env.VIACEP_URL}/${cep}/json/`);
-    console.log(response);
-    return response;
+    const { data } = await axios.get(`${process.env.VIACEP_URL}/${cep}/json/`);
+
+    return data;
   } catch (error) {
     // uses the app.ts error handler
     console.log(error);

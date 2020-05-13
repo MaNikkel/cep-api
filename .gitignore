@@ -204,3 +204,4 @@ $RECYCLE.BIN/
 *.lnk
 
 data
+yarn.lock

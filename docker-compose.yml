@@ -4,6 +4,9 @@ services:
   app:
     container_name: node_server
     build: .
+    environment:
+      VIACEP_URL: https://viacep.com.br/ws
+      MONGO_URL: mongodb://db:27017/cep_database
     volumes:
       - .:/app
     ports:

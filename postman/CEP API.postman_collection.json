@@ -47,7 +47,7 @@
     {
       "id": "b85eaf01-3766-422b-8e3d-f5405783a232",
       "key": "url",
-      "value": "http://localhost:3333/",
+      "value": "http://localhost:3333",
       "type": "string"
     }
   ],

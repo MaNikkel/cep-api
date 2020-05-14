@@ -2,6 +2,7 @@ import { Router, Request, Response } from "express";
 import { query } from "express-validator";
 
 import CepController from "../controllers/Cep.controller";
+import CacheController from "../controllers/Cache.controller";
 
 const router: Router = Router();
 
@@ -17,6 +18,7 @@ router.get(
         else return false;
       })
   ],
+  CacheController.getCachedCep,
   CepController.getCep
 );
 

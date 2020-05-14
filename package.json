@@ -45,6 +45,7 @@
     "@types/mongoose": "^5.7.16",
     "@types/morgan": "^1.7.35",
     "@types/node": "^10.11.7",
+    "@types/redis": "^2.8.20",
     "@types/supertest": "^2.0.9",
     "babel-core": "^6.26.3",
     "babel-polyfill": "^6.26.0",
@@ -76,6 +77,7 @@
     "express": "^4.16.4",
     "express-validator": "^6.4.0",
     "mongodb": "^3.5.7",
-    "mongoose": "^5.9.13"
+    "mongoose": "^5.9.13",
+    "redis": "^3.0.2"
   }
 }

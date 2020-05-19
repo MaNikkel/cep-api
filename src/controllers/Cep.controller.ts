@@ -14,16 +14,19 @@ class CepController {
       if (!errors.isEmpty()) {
         res.status(406).send({ errorMessage: errors.array() });
       } else {
-        const cep = await INTERNAL_CEP_SERVICES.getCepFromDatabase(
+        // const cep = await INTERNAL_CEP_SERVICES.getCepFromDatabase(
+        //   typeof req.query.cep == "string" ? req.query.cep : ""
+        // );
+        const cep = await INTERNAL_CEP_SERVICES.getCepFromPostgres(
           typeof req.query.cep == "string" ? req.query.cep : ""
         );
         if (!cep) {
-          console.log("viacep");
           const externalData = await EXTERNAL_CEP_SERVICES.consultViaCep(
             typeof req.query.cep == "string" ? req.query.cep : ""
           );
           if (externalData.cep) {
-            INTERNAL_CEP_SERVICES.saveCepToDataBase(externalData);
+            //INTERNAL_CEP_SERVICES.saveCepToDataBase(externalData);
+            INTERNAL_CEP_SERVICES.saveCepToPostgres(externalData);
             CACHE_SERVICES.setCep(
               req.query.cep == "string" ? req.query.cep : "",
               externalData
@@ -33,9 +36,12 @@ class CepController {
             res.status(404).send(externalData);
           }
         } else {
-          console.log("mongo");
-          CACHE_SERVICES.setCep(req.query.cep.toString(), cep.cep_data || {});
-          res.status(200).send(cep.cep_data);
+          console.log("postgres");
+          CACHE_SERVICES.setCep(req.query.cep.toString(), cep.Cep_data || {});
+          res.status(200).send(cep.Cep_data);
+          // console.log("mongo");
+          // CACHE_SERVICES.setCep(req.query.cep.toString(), cep.cep_data || {});
+          // res.status(200).send(cep.cep_data);
         }
       }
     } catch (error) {

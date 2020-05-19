@@ -16,6 +16,7 @@ services:
     links:
       - db
       - redis
+      - db_postgres
 
   db:
     image: "mongo"
@@ -24,6 +25,18 @@ services:
       - "27017:27017"
     volumes:
       - ./data/db:/data/db
+  db_postgres:
+    container_name: postgres_db
+    image: postgres:11.2-alpine
+    restart: unless-stopped
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./data/postgres_db:/data
+    environment:
+      POSTGRES_DB: cep-api
+      POSTGRES_USER: docker
+      POSTGRES_PASSWORD: admin
   redis:
     image: "redis"
     container_name: cache

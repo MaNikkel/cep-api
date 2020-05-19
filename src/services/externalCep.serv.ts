@@ -3,6 +3,7 @@ import { CepInterface } from "../interfaces";
 
 export async function consultViaCep(cep: string): Promise<CepInterface> {
   try {
+    console.log("viacep");
     const { data } = await axios.get(`${process.env.VIACEP_URL}/${cep}/json/`);
 
     return data;

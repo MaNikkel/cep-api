@@ -37,8 +37,11 @@ class CepController {
           }
         } else {
           console.log("postgres");
-          CACHE_SERVICES.setCep(req.query.cep.toString(), cep.Cep_data || {});
-          res.status(200).send(cep.Cep_data);
+          CACHE_SERVICES.setCep(
+            req.query.cep.toString(),
+            cep.Cep_data[0] || {}
+          );
+          res.status(200).send(cep.Cep_data[0]);
           // console.log("mongo");
           // CACHE_SERVICES.setCep(req.query.cep.toString(), cep.cep_data || {});
           // res.status(200).send(cep.cep_data);

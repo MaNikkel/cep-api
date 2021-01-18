@@ -1,7 +1,7 @@
 import axios from "axios";
 import { CepInterface } from "../interfaces";
 
-export async function back4APPCep(cep: string): Promise<CepInterface> {
+export async function back4APPCep(cep: string): Promise<CepInterface | null> {
   try {
     const where = encodeURIComponent(
       JSON.stringify({
@@ -18,7 +18,7 @@ export async function back4APPCep(cep: string): Promise<CepInterface> {
       }
     );
 
-    return data;
+    return !!data.results[0] ? data.results[0] : null;
   } catch (error) {
     // uses the app.ts error handler
     console.log("err back4APPCep serv :: ", error);

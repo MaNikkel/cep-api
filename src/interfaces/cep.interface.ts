@@ -1,11 +1,11 @@
 export interface CepInterface extends Object {
+  objectId: string;
   cep: string;
-  logradouro: string;
-  complemento: string;
+  cidade: string;
+  estado: string;
   bairro: string;
-  localidade: string;
-  uf: string;
-  unidade: string;
-  ibge: string;
-  gia: string;
+  logradouro: string;
+  numero?: string;
+  createdAt: string;
+  updatedAt: string;
 }

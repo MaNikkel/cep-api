@@ -15,7 +15,7 @@ class CepController {
       } else {
         const cep = String(req.query.cep);
         const externalData = await EXTERNAL_CEP_SERVICES.back4APPCep(cep);
-        if (externalData.results) {
+        if (externalData) {
           CACHE_SERVICES.setCep(cep, externalData).catch(err => {
             console.log("err set cep controller :: ", err);
           });

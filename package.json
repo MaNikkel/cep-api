@@ -35,17 +35,13 @@
     "@babel/plugin-transform-regenerator": "^7.0.0",
     "@babel/preset-env": "^7.8.3",
     "@babel/preset-typescript": "^7.8.3",
-    "@prisma/cli": "2.0.0-beta.5",
     "@types/axios": "^0.14.0",
     "@types/chai": "^4.2.10",
     "@types/express": "^4.16.0",
     "@types/express-validator": "^3.0.0",
     "@types/mocha": "^7.0.2",
-    "@types/mongodb": "^3.5.16",
-    "@types/mongoose": "^5.7.16",
     "@types/morgan": "^1.7.35",
     "@types/node": "^10.11.7",
-    "@types/redis": "^2.8.20",
     "@types/supertest": "^2.0.9",
     "babel-core": "^6.26.3",
     "babel-polyfill": "^6.26.0",
@@ -69,16 +65,14 @@
   },
   "dependencies": {
     "@babel/polyfill": "^7.0.0",
-    "@prisma/client": "2.0.0-beta.5",
     "@types/cors": "^2.8.6",
+    "@types/ioredis": "^4.19.0",
     "axios": "^0.19.2",
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "express": "^4.16.4",
     "express-validator": "^6.4.0",
-    "mongodb": "^3.5.7",
-    "mongoose": "^5.9.13",
-    "redis": "^3.0.2"
+    "ioredis": "^4.19.4"
   }
 }

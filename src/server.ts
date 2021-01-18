@@ -3,7 +3,6 @@ import express, { Request, Response } from "express";
 import bodyParser from "body-parser";
 import morgan from "morgan";
 import cors from "cors";
-import mongoose from "mongoose";
 
 import routes from "./routes";
 
@@ -18,14 +17,7 @@ app.use(express.static("public"));
 
 app.use("/", routes);
 
-mongoose
-  .connect(process.env.MONGO_URL || "", { useNewUrlParser: true })
-  .then(() => {
-    console.log("CONNECTED WITH MONGO");
-  })
-  .catch(err => console.log(err));
-
-//Error handler
+// Error handler
 app.use((error: Error, req: Request, res: Response) => {
   res.status(500).json({ message: error.message, req: req.url });
 });

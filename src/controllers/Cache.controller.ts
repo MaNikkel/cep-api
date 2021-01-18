@@ -12,12 +12,9 @@ class CacheController {
       if (!errors.isEmpty()) {
         res.status(406).send({ errorMessage: errors.array() });
       } else {
-        const cachedData = await CACHE_SERVICES.getCep(
-          typeof req.query.cep == "string" ? req.query.cep : ""
-        );
+        const cep = String(req.query.cep);
+        const cachedData = await CACHE_SERVICES.getCep(cep);
         if (cachedData) {
-          console.log("redis");
-
           res.status(200).send(JSON.parse(cachedData));
         } else {
           next();

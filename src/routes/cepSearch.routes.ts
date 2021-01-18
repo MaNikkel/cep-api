@@ -14,8 +14,7 @@ router.get(
       .isString()
       .custom((cep: string) => {
         const cepFormat = /^[0-9]{8}$/;
-        if (cepFormat.test(cep)) return true;
-        else return false;
+        return cepFormat.test(cep);
       })
   ],
   CacheController.getCachedCep,

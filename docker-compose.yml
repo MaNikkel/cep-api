@@ -5,40 +5,12 @@ services:
     container_name: node_server
     build: .
     environment:
-      VIACEP_URL: https://viacep.com.br/ws
-      MONGO_URL: mongodb://db:27017/cep_database
-      REDIS_URL: redis://cache
+      BACK4APPCEP: https://parseapi.back4app.com/classes/Brazilzipcode_CEP
+      BACK4APPID: HkH1w56yVf126H1qBQ2gvNeMiwA6Ow2etIt3VegT
+      BACK4APPKEY: RgS36x0DXLNuDYDsirQbUeE85vsYybHRhevKYihS
+      REDIS_URL: redis://:aoIpcQzwx1Tpu6oXfkRo4x9a0anaDqIv@redis-17621.c238.us-central1-2.gce.cloud.redislabs.com:17621
     volumes:
       - .:/app
     ports:
       - "3333:3333"
     command: sh -c "yarn && yarn start"
-    links:
-      - db
-      - redis
-      - db_postgres
-
-  db:
-    image: "mongo"
-    container_name: mongo_db
-    ports:
-      - "27017:27017"
-    volumes:
-      - ./data/db:/data/db
-  db_postgres:
-    container_name: postgres_db
-    image: postgres:11.2-alpine
-    restart: unless-stopped
-    ports:
-      - "5432:5432"
-    volumes:
-      - ./data/postgres_db:/data
-    environment:
-      POSTGRES_DB: cep-api
-      POSTGRES_USER: docker
-      POSTGRES_PASSWORD: admin
-  redis:
-    image: "redis"
-    container_name: cache
-    expose:
-      - 6375

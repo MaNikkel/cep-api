@@ -1,11 +1,23 @@
-import redis from "redis";
-import { promisify } from "util";
+import Redis from "ioredis";
 
-const client = redis.createClient(process.env.REDIS_URL || "");
+let redis: Redis.Redis;
+let started = false;
 
-export default {
-  ...client,
-  getAsync: promisify(client.get).bind(client),
-  setAsync: promisify(client.setex).bind(client),
-  keysAsync: promisify(client.keys).bind(client)
+const startRedis = () => {
+  redis = started ? redis : new Redis(process.env.REDIS_URL);
+  started = true;
+};
+
+export const get = async (key: string): Promise<any> => {
+  startRedis();
+  let value = await redis.get(key);
+  if (value) value = JSON.parse(value);
+  return value;
+};
+
+export const set = (key: string, val: any): void => {
+  startRedis();
+  redis.set(key, JSON.stringify(val)).catch(err => {
+    console.log("err set redis :: ", err);
+  });
 };

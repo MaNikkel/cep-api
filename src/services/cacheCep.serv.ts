@@ -1,25 +1,15 @@
-import client from "../utils/redis.util";
+import * as cache from "../utils/redis.util";
 
 export async function setCep(cep: string, cepData: object): Promise<void> {
-  try {
-    await client.setAsync(cep, 15, JSON.stringify(cepData));
-  } catch (error) {
-    // uses the app.ts error handler
-    console.log(error);
-    const err = new Error(error);
-    throw {
-      error: err
-    };
-  }
+  cache.set(cep, JSON.stringify(cepData));
 }
 
 export async function getCep(cep: string): Promise<any> {
   try {
-    const result = await client.getAsync(cep.toString());
-    return result;
+    return await cache.get(cep);
   } catch (error) {
     // uses the app.ts error handler
-    console.log(error);
+    console.log("getCep err::", error);
     const err = new Error(error);
     throw {
       error: err
